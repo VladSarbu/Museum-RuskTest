@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.testng.asserts.Assertion;
 import ro.rusk.museumrusk.model.CollectionModel;
 
 @SpringBootTest
@@ -29,6 +30,13 @@ public class RuskTestingTest {
                 .queryParam("involvedMaker","Rembrandt+van+Rijn").get();
         res.getBody().print();
         Assertions.assertEquals(res.getStatusCode(), 200);
+    }
+
+    @Test
+    public void loadTimeTest(){
+        Response res = httpRequest.queryParam("key","0fiuZFh4")
+                .queryParam("involvedMaker","Rembrandt+van+Rijn").get();
+        Assertions.assertTrue(res.time()<1000);
     }
 
     @Test
