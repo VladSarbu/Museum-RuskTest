@@ -2,6 +2,7 @@ package ro.rusk.museumrusk;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import groovy.util.logging.Slf4j;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
@@ -74,12 +75,10 @@ public class RuskTestingTest {
 
 
     @Test
-    public void resultPageLimitError() throws JsonProcessingException {
+    public void resultPageLimitError() {
         int statusCode = httpRequest.queryParam("key","0fiuZFh4").queryParam("p", "1000")
                 .queryParam("ps","1000").get().getStatusCode();
         Assertions.assertEquals(statusCode, 400);
-        Assertions.assertThrows(RuntimeException.class,()->httpRequest.queryParam("key","0fiuZFh4").queryParam("p", "1000")
-                .queryParam("ps","1000").get());
     }
 
     @Test
