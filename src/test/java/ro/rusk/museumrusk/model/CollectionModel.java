@@ -1,4 +1,4 @@
-package ro.rusk.test.Museum_RuskTest.model;
+package ro.rusk.museumrusk.model;
 
 import lombok.Data;
 

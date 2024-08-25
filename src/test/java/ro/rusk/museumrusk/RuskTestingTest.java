@@ -1,4 +1,4 @@
-package ro.rusk.test.Museum_RuskTest;
+package ro.rusk.museumrusk;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -9,10 +9,10 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import ro.rusk.test.Museum_RuskTest.model.CollectionModel;
+import ro.rusk.museumrusk.model.CollectionModel;
 
 @SpringBootTest
-public class RuskTesting {
+public class RuskTestingTest {
 
     RequestSpecification httpRequest = RestAssured.given();
 
@@ -23,7 +23,7 @@ public class RuskTesting {
     }
 
     @Test
-    public void collectionHttpCode200(){
+    public void collectionHttpCode200Test(){
         Response res = httpRequest.queryParam("key","0fiuZFh4")
                 .queryParam("involvedMaker","Rembrandt+van+Rijn").get();
         res.getBody().print();
@@ -31,7 +31,7 @@ public class RuskTesting {
     }
 
     @Test
-    public void resultPageLimit() throws JsonProcessingException {
+    public void resultPageLimitTest() throws JsonProcessingException {
         Response rse = httpRequest.queryParam("key","0fiuZFh4").queryParam("p", "100")
                 .queryParam("ps","100").get();
     ObjectMapper objectMapper = new ObjectMapper();
@@ -40,7 +40,7 @@ public class RuskTesting {
     }
 
     @Test
-    public void resultPageNegativeValue() throws JsonProcessingException {
+    public void resultPageNegativeValueTest() throws JsonProcessingException {
         Response rse = httpRequest.queryParam("key","0fiuZFh4").queryParam("p", "100")
                 .queryParam("ps","-1").get();
         ObjectMapper objectMapper = new ObjectMapper();
@@ -51,7 +51,7 @@ public class RuskTesting {
     }
 
     @Test
-    public void resultPageOverLimit() throws JsonProcessingException {
+    public void resultPageOverLimitTest() throws JsonProcessingException {
         Response rse = httpRequest.queryParam("key","0fiuZFh4").queryParam("p", "10")
                 .queryParam("ps","101").get();
         ObjectMapper objectMapper = new ObjectMapper();
@@ -62,7 +62,7 @@ public class RuskTesting {
     }
 
     @Test
-    public void resultPageOver10000() throws JsonProcessingException {
+    public void resultPageOver10000Test() throws JsonProcessingException {
         Response rse = httpRequest.queryParam("key","0fiuZFh4").queryParam("p", "101")
                 .queryParam("ps","100").get();
         ObjectMapper objectMapper = new ObjectMapper();
