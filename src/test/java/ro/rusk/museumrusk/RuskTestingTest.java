@@ -38,6 +38,17 @@ public class RuskTestingTest {
                 .queryParam("involvedMaker","Rembrandt+van+Rijn").get();
         Assertions.assertTrue(res.time()<1000);
     }
+    @Test
+    public void loadTimeMultipleCallsTest(){
+        Response res = httpRequest.queryParam("key","0fiuZFh4")
+                .queryParam("involvedMaker","Rembrandt+van+Rijn").get();
+
+       for(int i = 0; i <15; i++){
+            Assertions.assertTrue(res.time()<1000);
+           System.out.println(res.time());
+        }
+
+    }
 
     @Test
     public void resultPageLimitTest() throws JsonProcessingException {
